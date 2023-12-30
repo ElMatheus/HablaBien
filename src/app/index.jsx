@@ -1,4 +1,6 @@
+"use client";
 import { ImageBackground, StyleSheet, Text, View } from "react-native";
+import { useState } from "react";
 import Header from "./components/Header";
 import AppLoading from 'expo-app-loading';
 import { LinearGradient } from "expo-linear-gradient";
@@ -23,8 +25,9 @@ import {
   Poppins_900Black,
   Poppins_900Black_Italic,
 } from '@expo-google-fonts/poppins';
-
+import { TouchableOpacity } from "react-native-gesture-handler";
 const Home = () => {
+  const [start, setStart] = useState(false);
   let [fontsLoaded] = useFonts({
     Poppins_100Thin,
     Poppins_100Thin_Italic,
@@ -50,7 +53,7 @@ const Home = () => {
   } else {
     return (
       <ImageBackground source={require("../../assets/images/AlbedoBase_XL_Generate_a_realistic_image_of_a_green_classroom_1.jpg")} style={styles.containerHome}>
-        <Header />
+        <Header func={start} setFunc={setStart} />
         <View style={styles.containerBtn}>
           <LinearGradient
             colors={['transparent', 'rgba(24, 24, 27, 0.5)', '#18181b']}
@@ -67,10 +70,10 @@ const Home = () => {
               width: "100%",
             }}>
             <View style={styles.description}>
-              <Text style={styles.descriptionTxt} >Aprenda <Text style={styles.txtEspanhol}>Espanhol</Text> com exercicios</Text>
-              <View style={styles.btnIniciar}>
-                <Text style={styles.txtBtn}>Iniciar</Text>
-              </View>
+              <Text style={styles.descriptionTxt} >¡Ejercita tu <Text style={styles.txtEspanhol}>Español</Text> con ejercicios!</Text>
+              <TouchableOpacity style={styles.btnIniciar} onPress={() => setStart(!start)}>
+                <Text style={styles.txtBtn}>Comenzar</Text>
+              </TouchableOpacity>
             </View>
           </LinearGradient>
         </View>
@@ -83,12 +86,14 @@ const styles = StyleSheet.create({
     flex: 1,
     resizeMode: "cover",
     justifyContent: "center",
-
+    position: 'relative'
   },
   containerBtn: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    zIndex: 2,
+    elevation: 2, 
   },
   description: {
     justifyContent: 'center',

@@ -1,5 +1,6 @@
 import { StyleSheet, View, Text } from "react-native";
 import { BlurView } from "expo-blur";
+import Icon from 'react-native-vector-icons/Entypo';
 import AppLoading from 'expo-app-loading';
 import {
     useFonts,
@@ -23,7 +24,7 @@ import {
     Poppins_900Black_Italic,
 } from '@expo-google-fonts/poppins';
 
-const Header = () => {
+const Header = ({ func, setFunc }) => {
     let [fontsLoaded] = useFonts({
         Poppins_100Thin,
         Poppins_100Thin_Italic,
@@ -48,23 +49,82 @@ const Header = () => {
         return <AppLoading />;
     } else {
         return (
-            <BlurView intensity={40} tint="dark" style={styles.blur}>
-                <View style={styles.header}>
-                    <Text style={styles.titleHeader}>HablaBien</Text>
-                </View>
-            </BlurView>
+            func == false ? (
+                <BlurView intensity={40} tint="dark" >
+                    <View style={styles.header}>
+                        <Text style={styles.titleHeader}>HablaBien</Text>
+                        <Icon onPress={() => setFunc(!func)} size={18} color="#fff" name="chevron-thin-up" style={{ transform: [{ rotate: '180deg' }] }} />
+                    </View>
+                </BlurView >
+            ) : (
+                <BlurView style={styles.blur} intensity={40} tint="dark" >
+                    <View style={styles.headerSelection}>
+                        <Text style={styles.titleHeader}>HablaBien</Text>
+                        <Icon onPress={() => setFunc(!func)} size={18} color="#fff" name="chevron-thin-up" />
+                    </View>
+                    <View style={styles.listenAndRepeatContainer}>
+                        <View style={styles.txtHeaderLinks}>
+                            <Text style={styles.textoLink} >Escucha y Repite</Text>
+                        </View>
+                    </View>
+                </BlurView >
+
+            )
         )
     }
 };
 const styles = StyleSheet.create({
+    containerHeader: {
+        flex: 1,
+        flexDirection: 'column',
+
+    },
+    textoLink: {
+        color: '#fff',
+        fontFamily: 'Poppins_500Medium_Italic',
+        fontSize: 17,
+        borderBottomColor: '#fff',
+        borderBottomWidth: 1,
+        paddingBottom: 4,
+    },
+    txtHeaderLinks: {
+        padding: 18,
+        
+    },
+    listenAndRepeatContainer: {
+        position: 'absolute',
+        top: 30,
+        left: 0,
+        right: 0,
+        padding: 12,
+    },
+    blur: {
+        width: "100%",
+        height: "100%",
+        position: 'absolute',
+        flex: 1,
+        flexDirection: 'column',
+        top: 0,
+        left: 0,
+        zIndex: 99,
+        elevation: 99, // Add this line
+    },
     header: {
         padding: 12,
         backgroundColor: 'transparent',
+        flexDirection: 'row', // Change this line
+        justifyContent: 'space-between'
     },
     titleHeader: {
         color: '#fff',
         fontFamily: 'Poppins_500Medium_Italic',
         backgroundColor: 'transparent',
+    },
+    headerSelection: {
+        padding: 12,
+        height: "100%",
+        flexDirection: 'row', // Change this line
+        justifyContent: 'space-between'
     }
 });
 
