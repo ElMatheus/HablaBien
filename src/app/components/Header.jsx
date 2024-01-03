@@ -1,6 +1,7 @@
 import { StyleSheet, View, Text } from "react-native";
 import { BlurView } from "expo-blur";
 import Icon from 'react-native-vector-icons/Entypo';
+import { Link } from "expo-router";
 import AppLoading from 'expo-app-loading';
 import {
     useFonts,
@@ -64,7 +65,7 @@ const Header = ({ func, setFunc }) => {
                     </View>
                     <View style={styles.listenAndRepeatContainer}>
                         <View style={styles.txtHeaderLinks}>
-                            <Text style={styles.textoLink} >Escucha y Repite</Text>
+                            <Link href={"../ListenAndRepeat/page"} style={styles.textoLink} >Escucha y Repite</Link>
                         </View>
                     </View>
                 </BlurView >
