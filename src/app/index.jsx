@@ -53,7 +53,7 @@ const Home = () => {
   } else {
     return (
       <ImageBackground source={require("../../assets/images/AlbedoBase_XL_Generate_a_realistic_image_of_a_green_classroom_1.jpg")} style={styles.containerHome}>
-        <Header func={start} setFunc={setStart} />
+        <Header func={start} setFunc={setStart} classSelection={null} />
         <View style={styles.containerBtn}>
           <LinearGradient
             colors={['transparent', 'rgba(24, 24, 27, 0.5)', '#18181b']}

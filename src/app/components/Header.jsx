@@ -25,7 +25,7 @@ import {
     Poppins_900Black_Italic,
 } from '@expo-google-fonts/poppins';
 
-const Header = ({ func, setFunc }) => {
+const Header = ({ func, setFunc, classSelection }) => {
     let [fontsLoaded] = useFonts({
         Poppins_100Thin,
         Poppins_100Thin_Italic,
@@ -51,12 +51,22 @@ const Header = ({ func, setFunc }) => {
     } else {
         return (
             func == false ? (
-                <BlurView intensity={40} tint="dark" >
-                    <View style={styles.header}>
-                        <Text style={styles.titleHeader}>HablaBien</Text>
-                        <Icon onPress={() => setFunc(!func)} size={18} color="#fff" name="chevron-thin-up" style={{ transform: [{ rotate: '180deg' }] }} />
-                    </View>
-                </BlurView >
+                classSelection == null ? (
+                    <BlurView intensity={40} tint="dark" >
+                        <View style={styles.header}>
+                            <Text style={styles.titleHeader}>HablaBien</Text>
+                            <Icon onPress={() => setFunc(!func)} size={18} color="#fff" name="chevron-thin-up" style={{ transform: [{ rotate: '180deg' }] }} />
+                        </View>
+                    </BlurView >
+                ) : (
+                    <BlurView style={styles.blur2} intensity={40} tint="dark" >
+                        <View style={styles.header}>
+                            <Text style={styles.titleHeader}>HablaBien</Text>
+                            <Icon onPress={() => setFunc(!func)} size={18} color="#fff" name="chevron-thin-up" style={{ transform: [{ rotate: '180deg' }] }} />
+                        </View>
+                    </BlurView >
+                )
+
             ) : (
                 <BlurView style={styles.blur} intensity={40} tint="dark" >
                     <View style={styles.headerSelection}>
@@ -90,7 +100,7 @@ const styles = StyleSheet.create({
     },
     txtHeaderLinks: {
         padding: 18,
-        
+
     },
     listenAndRepeatContainer: {
         position: 'absolute',
@@ -109,12 +119,25 @@ const styles = StyleSheet.create({
         left: 0,
         zIndex: 99,
         elevation: 99, // Add this line
+
+    },
+    blur2: {
+
+        position: 'absolute',
+        flex: 1,
+        flexDirection: 'column',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 2,
+        elevation: 2, // Add this line
+
     },
     header: {
         padding: 12,
         backgroundColor: 'transparent',
         flexDirection: 'row', // Change this line
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
     },
     titleHeader: {
         color: '#fff',

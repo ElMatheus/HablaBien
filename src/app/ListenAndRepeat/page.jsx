@@ -4,6 +4,7 @@ import allObjects from "../../data/exercises/objects.js";
 import AppLoading from 'expo-app-loading';
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Icon from 'react-native-vector-icons/AntDesign';
+import Header from "../components/Header";
 import IconE from 'react-native-vector-icons/Entypo';
 import {
     useFonts,
@@ -28,6 +29,7 @@ import {
 } from '@expo-google-fonts/poppins';
 
 const ListenAndRepeat = () => {
+    const [start, setStart] = useState(false);
     const [unseenObjects, setUnseenObjects] = useState([...allObjects]);
     const [numberPage, setNumberPage] = useState(Math.floor(Math.random() * unseenObjects.length));
 
@@ -69,6 +71,9 @@ const ListenAndRepeat = () => {
     } else {
         return (
             <View>
+
+            <View style={styles.screen}>
+                    <Header func={start} setFunc={setStart} classSelection={"blur2"} />
                 <View>
                     <Image style={styles.imgAudio} source={{ uri: unseenObjects[numberPage]?.image }} />
                     <Text style={styles.descImg}>{unseenObjects[numberPage]?.authorCredits}</Text>
@@ -76,26 +81,35 @@ const ListenAndRepeat = () => {
                 <View>
                     <Text style={styles.title}>{unseenObjects[numberPage]?.name}</Text>
                 </View>
-                <View>
-                    <TouchableOpacity>
-                        <Icon name="setting" size={40} color="#525252"/>
+                <View style={styles.icons}>
+                    <TouchableOpacity style={styles.iconAudio}>
+                        <Icon name="setting" size={45} color="#547326" />
                     </TouchableOpacity>
-                    <TouchableOpacity>
-                        <IconE name="controller-play" size={40} color="#525252" />
+                    <TouchableOpacity style={styles.iconAudio}>
+                        <IconE name="controller-play" size={45} color="#547326" />
                     </TouchableOpacity>
-                    <TouchableOpacity>
-                        <IconE name="cw" size={40} color="#525252" />
+                    <TouchableOpacity style={styles.iconAudio}>
+                        <IconE name="cw" size={45} color="#547326" />
                     </TouchableOpacity>
-                    <TouchableOpacity>
-                        <IconE name="level-down" size={40} color="#525252" />
+                    <TouchableOpacity style={styles.iconAudio}>
+                        <IconE name="level-down" size={45} color="#547326" />
                     </TouchableOpacity>
                 </View>
                 {/* <Button title="Next" onPress={nextPage} /> */}
             </View>
+                </View>
+
         )
     }
 };
 const styles = StyleSheet.create({
+    screen: {
+        height: '100%',
+        backgroundColor: '#ECECEC',
+        position: 'relative',
+        zIndex: 1,
+        elevation: 1,
+    },
     imgAudio: {
         width: "auto",
         aspectRatio: 1 / 1,
@@ -105,21 +119,37 @@ const styles = StyleSheet.create({
         borderBottomRightRadius: 40,
         marginLeft: 5,
         marginRight: 5,
-
     },
     descImg: {
         fontFamily: 'Poppins_300Light',
-        color: '#525252',
+        color: '#1C260D',
         textAlign: 'center',
         marginTop: 7,
         fontSize: 13,
     },
     title: {
         fontFamily: 'Poppins_600SemiBold',
-        color: '#525252',
-        marginTop: 7,
+        color: '#1C260D',
+        marginTop: 12,
         fontSize: 27,
         marginLeft: 20,
+    },
+    icons: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        padding: 10,
+        borderRadius: 40,
+        position: 'absolute',
+        bottom: 10,
+        left: 5,
+        right: 5,
+
+    },
+    iconAudio: {
+        borderRadius: 100,
+        backgroundColor: '#fff',
+        padding: 10,
+        backgroundColor: '#fff',
     }
 });
 
