@@ -6,6 +6,8 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import Icon from 'react-native-vector-icons/AntDesign';
 import Header from "../components/Header";
 import IconE from 'react-native-vector-icons/Entypo';
+import * as Speech from 'expo-speech';
+
 import {
     useFonts,
     Poppins_100Thin,
@@ -42,9 +44,17 @@ const ListenAndRepeat = () => {
         setNumberPage(Math.floor(Math.random() * unseenObjects.length));
     }
 
+    const handleSpeek = () => {
+        Speech.speak(unseenObjects[numberPage]?.name, {
+            language: "es",
+            voice: "es-ES-language",
+        });
+    }   
+
     useEffect(() => {
         setNumberPage(Math.floor(Math.random() * unseenObjects.length));
     }, [unseenObjects]);
+
 
     let [fontsLoaded] = useFonts({
         Poppins_100Thin,
@@ -85,13 +95,10 @@ const ListenAndRepeat = () => {
                     <TouchableOpacity style={styles.iconAudio}>
                         <Icon name="setting" size={45} color="#547326" />
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.iconAudio}>
+                    <TouchableOpacity onPress={handleSpeek} style={styles.iconAudio}>
                         <IconE name="controller-play" size={45} color="#547326" />
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.iconAudio}>
-                        <IconE name="cw" size={45} color="#547326" />
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.iconAudio}>
+                    <TouchableOpacity onPress={nextPage} style={styles.iconAudio}>
                         <IconE name="level-down" size={45} color="#547326" />
                     </TouchableOpacity>
                 </View>
