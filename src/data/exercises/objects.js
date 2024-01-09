@@ -119,6 +119,135 @@ const allObjects = [
         seen: false,
         id: 15
     },
+    {
+        name: 'Caja',
+        image: 'https://img.freepik.com/psd-gratuitas/caixa-de-papelao-isolada_125540-1169.jpg',
+        authorCredits: 'Imagem de Vectonauta no Freepik',
+        category: 'c',
+        seen: false,
+        id: 16
+    },
+    {
+        name: 'Candelabro',
+        image: 'https://img.freepik.com/vetores-gratis/lampada-de-ouro-realista-transparente_23-2148336813.jpg',
+        authorCredits: 'Imagem de Freepik',
+        category: 'c',
+        seen: false,
+        id: 17
+    },
+    {
+        name: 'Computadora',
+        image: 'https://img.freepik.com/vetores-gratis/ilustracao-de-conceito-de-computador-desktop_114360-12153.jpg',
+        authorCredits: 'Imagem de storyset no Freepik',
+        category: 'c',
+        seen: false,
+        id: 18
+    },
+    {
+        name: 'Conejo',
+        image: 'https://img.freepik.com/fotos-gratis/coelho-peludo-fofo-isolado_78492-3950.jpg',
+        authorCredits: 'Imagem de pereslavtseva no Freepik',
+        category: 'c',
+        seen: false,
+        id: 19
+    },
+    {
+        name: 'Cuchara',
+        image: 'https://img.freepik.com/vetores-gratis/adesivo-colher-utensilios-de-cozinha-em-fundo-branco_1308-67037.jpg',
+        authorCredits: 'Imagem de brgfx no Freepik',
+        category: 'c',
+        seen: false,
+        id: 20
+    },
+    {
+        name: 'Dado',
+        image: 'https://img.freepik.com/vetores-gratis/dados-de-desenhos-animados_78370-2910.jpg',
+        authorCredits: 'Imagem de juicy_fish no Freepik',
+        category: 'd',
+        seen: false,
+        id: 21
+    },
+    {
+        name: 'Delfín',
+        image: 'https://img.freepik.com/fotos-gratis/vista-de-golfinhos-nadando-na-agua_23-2150674903.jpg',
+        authorCredits: 'Imagem de Freepik',
+        category: 'd',
+        seen: false,
+        id: 22
+    },
+    {
+        name: 'Dinero',
+        image: 'https://img.freepik.com/vetores-gratis/pilha-de-dinheiro-e-moedas-de-ouro-3d-icone-de-estilo-de-desenho-animado-moedas-com-cifrao-maco-de-dinheiro-ilustracao-vetorial-plana-de-moeda-riqueza-investimento-sucesso-poupanca-economia-conceito-de-lucro_74855-26108.jpg',
+        authorCredits: 'Imagem de pch.vector no Freepik',
+        category: 'd',
+        seen: false,
+        id: 23
+    },
+    {
+        name: 'Diente',
+        image: 'https://img.freepik.com/psd-gratuitas/ilustracao-3d-para-estomatologia-e-odontologia_23-2150033461.jpg',
+        authorCredits: 'Imagem de Freepik',
+        category: 'd',
+        seen: false,
+        id: 23
+    },
+    {
+        name: 'Dinosaurio',
+        image: 'https://img.freepik.com/vetores-gratis/bebe-dinossauro-desenhado-ilustrado_23-2148955344.jpg',
+        authorCredits: 'Imagem de Freepik',
+        category: 'd',
+        seen: false,
+        id: 24
+    },
+    {
+        name: 'Elefante',
+        image: 'https://img.freepik.com/vetores-gratis/elefante-bonito-sentado-e-acenando-a-mao-dos-desenhos-animados-icone-ilustracao-vetorial_138676-2220.jpg',
+        authorCredits: 'Imagem de catalyststuff no Freepik',
+        category: 'e',
+        seen: false,
+        id: 25
+    },
+    {
+        name: 'Escalera',
+        image: 'https://img.freepik.com/fotos-gratis/escadote-de-madeira_1194-612.jpg',
+        authorCredits: 'Imagem de kues1 no Freepik',
+        category: 'e',
+        seen: false,
+        id: 26
+    },
+    {
+        name: 'Escoba',
+        image: 'https://img.freepik.com/vetores-gratis/doodle-de-vassoura-de-halloween-desenhado-a-mao_17005-1691.jpg',
+        authorCredits: 'Imagem de YusufSangdes no Freepik',
+        category: 'e',
+        seen: false,
+        id: 27
+    },
+    {
+        name: 'Estrella',
+        image: 'https://img.freepik.com/vetores-gratis/comecar_53876-25533.jpg',
+        authorCredits: 'Imagem de rawpixel.com no Freepik',
+        category: 'e',
+        seen: false,
+        id: 28
+    },
+    {
+        name: 'Foca',
+        image: 'https://img.freepik.com/vetores-gratis/colecao-de-emblemas-de-certificacao-iso_23-2148698373.jpg',
+        authorCredits: 'Imagem de Freepik',
+        category: 'f',
+        seen: false,
+        id: 29
+    },
+    {
+        name: 'Fresa',
+        image: 'https://img.freepik.com/psd-gratuitas/vista-de-frutas-maduras-e-doces_23-2150112912.jpg',
+        authorCredits: 'Imagem de Freepik',
+        category: 'f',
+        seen: false,
+        id: 30
+    },
+
  
 ]    
 
