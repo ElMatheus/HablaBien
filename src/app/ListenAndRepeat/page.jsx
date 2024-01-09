@@ -1,5 +1,6 @@
 import { View, Image, Button, StyleSheet, Text } from "react-native";
 import { useState, useEffect } from "react";
+import SettingsAudio from "../components/SettingsAudio.jsx";
 import allObjects from "../../data/exercises/objects.js";
 import AppLoading from 'expo-app-loading';
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -7,6 +8,7 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import Header from "../components/Header";
 import IconE from 'react-native-vector-icons/Entypo';
 import * as Speech from 'expo-speech';
+
 
 import {
     useFonts,
@@ -34,6 +36,8 @@ const ListenAndRepeat = () => {
     const [start, setStart] = useState(false);
     const [unseenObjects, setUnseenObjects] = useState([...allObjects]);
     const [numberPage, setNumberPage] = useState(Math.floor(Math.random() * unseenObjects.length));
+    const [configuration, setConfiguration] = useState(false);
+    const [speedVoice, setSpeedVoice] = useState(1.0);
 
     const nextPage = () => {
         unseenObjects.splice(numberPage, 1);
@@ -48,8 +52,9 @@ const ListenAndRepeat = () => {
         Speech.speak(unseenObjects[numberPage]?.name, {
             language: "es",
             voice: "es-ES-language",
+            rate: speedVoice,
         });
-    }   
+    }
 
     useEffect(() => {
         setNumberPage(Math.floor(Math.random() * unseenObjects.length));
@@ -81,30 +86,37 @@ const ListenAndRepeat = () => {
     } else {
         return (
             <View>
+                {
+                    configuration == false ? (
+                        <View style={styles.screen}>
+                            <Header func={start} setFunc={setStart} classSelection={"blur2"} />
+                            <View>
+                                <Image style={styles.imgAudio} source={{ uri: unseenObjects[numberPage]?.image }} />
+                                <Text style={styles.descImg}>{unseenObjects[numberPage]?.authorCredits}</Text>
+                            </View>
+                            <View>
+                                <Text style={styles.title}>{unseenObjects[numberPage]?.name}</Text>
+                            </View>
+                            <View style={styles.icons}>
+                                <TouchableOpacity onPress={() => setConfiguration(true)} style={styles.iconAudio}>
+                                    <Icon name="setting" size={45} color="#547326" />
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={handleSpeek} style={styles.iconAudio}>
+                                    <IconE name="controller-play" size={45} color="#547326" />
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={nextPage} style={styles.iconAudio}>
+                                    <IconE name="level-down" size={45} color="#547326" />
+                                </TouchableOpacity>
+                            </View>
+                            {/* <Button title="Next" onPress={nextPage} /> */}
+                        </View>
 
-            <View style={styles.screen}>
-                    <Header func={start} setFunc={setStart} classSelection={"blur2"} />
-                <View>
-                    <Image style={styles.imgAudio} source={{ uri: unseenObjects[numberPage]?.image }} />
-                    <Text style={styles.descImg}>{unseenObjects[numberPage]?.authorCredits}</Text>
-                </View>
-                <View>
-                    <Text style={styles.title}>{unseenObjects[numberPage]?.name}</Text>
-                </View>
-                <View style={styles.icons}>
-                    <TouchableOpacity style={styles.iconAudio}>
-                        <Icon name="setting" size={45} color="#547326" />
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={handleSpeek} style={styles.iconAudio}>
-                        <IconE name="controller-play" size={45} color="#547326" />
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={nextPage} style={styles.iconAudio}>
-                        <IconE name="level-down" size={45} color="#547326" />
-                    </TouchableOpacity>
-                </View>
-                {/* <Button title="Next" onPress={nextPage} /> */}
+                    ) : (
+                        <SettingsAudio setConfiguration={setConfiguration} setSpeed={setSpeedVoice} speed={speedVoice} />
+                    )
+                }
+
             </View>
-                </View>
 
         )
     }
