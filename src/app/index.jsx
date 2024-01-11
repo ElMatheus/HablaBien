@@ -52,7 +52,7 @@ const Home = () => {
     return <AppLoading />;
   } else {
     return (
-      <ImageBackground source={require("../../assets/images/AlbedoBase_XL_Generate_a_realistic_image_of_a_green_classroom_1.jpg")} style={styles.containerHome}>
+      <ImageBackground source={require("../../assets/images/WhatsApp.jpeg")} style={styles.containerHome}>
         <Header func={start} setFunc={setStart} classSelection={null} />
         <View style={styles.containerBtn}>
           <LinearGradient
@@ -70,7 +70,7 @@ const Home = () => {
               width: "100%",
             }}>
             <View style={styles.description}>
-              <Text style={styles.descriptionTxt} >¡Ejercita tu <Text style={styles.txtEspanhol}>Español</Text> con ejercicios!</Text>
+              <Text style={styles.descriptionTxt} >Estimulación del <Text style={styles.txtEspanhol}>Español</Text> con ejercicios</Text>
               <TouchableOpacity style={styles.btnIniciar} onPress={() => setStart(!start)}>
                 <Text style={styles.txtBtn}>Comenzar</Text>
               </TouchableOpacity>
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   btnIniciar: {
-    backgroundColor: '#A7F272',
+    backgroundColor: '#E8C2B7',
     padding: 10,
     paddingRight: 40,
     paddingLeft: 40,
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   txtEspanhol: {
-    color: '#A7F272',
+    color: '#E8C2B7',
   }
 
 

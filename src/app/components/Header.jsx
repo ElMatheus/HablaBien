@@ -2,7 +2,6 @@ import { StyleSheet, View, Text } from "react-native";
 import { BlurView } from "expo-blur";
 import Icon from 'react-native-vector-icons/Entypo';
 import { Link } from "expo-router";
-import AppLoading from 'expo-app-loading';
 import {
     useFonts,
     Poppins_100Thin,
@@ -46,9 +45,6 @@ const Header = ({ func, setFunc, classSelection }) => {
         Poppins_900Black,
         Poppins_900Black_Italic,
     });
-    if (!fontsLoaded) {
-        return <AppLoading />;
-    } else {
         return (
             func == false ? (
                 classSelection == null ? (
@@ -83,7 +79,6 @@ const Header = ({ func, setFunc, classSelection }) => {
             )
         )
     }
-};
 const styles = StyleSheet.create({
     containerHeader: {
         flex: 1,

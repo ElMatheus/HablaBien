@@ -111,13 +111,13 @@ const ListenAndRepeat = () => {
                 </View>
                 <View style={styles.icons}>
                     <TouchableOpacity onPress={() => setConfiguration(true)} style={styles.iconAudio}>
-                        <Icon name="setting" size={45} color="#547326" />
+                        <Icon name="setting" size={45} color="#9F6057" />
                     </TouchableOpacity>
                     <TouchableOpacity onPress={handleSpeek} style={styles.iconAudio}>
-                        <IconE name="controller-play" size={45} color="#547326" />
+                        <IconE name="controller-play" size={45} color="#9F6057" />
                     </TouchableOpacity>
                     <TouchableOpacity onPress={nextPage} style={styles.iconAudio}>
-                        <IconE name="level-down" size={45} color="#547326" />
+                        <IconE name="level-down" size={45} color="#9F6057" />
                     </TouchableOpacity>
                 </View>
             </View>
@@ -130,6 +130,7 @@ const styles = StyleSheet.create({
     screen: {
         height: '100%',
         backgroundColor: '#ECECEC',
+
         position: 'relative',
         zIndex: 1,
         elevation: 1,
@@ -146,14 +147,14 @@ const styles = StyleSheet.create({
     },
     descImg: {
         fontFamily: 'Poppins_300Light',
-        color: '#1C260D',
+        color: '#8F3326',
         textAlign: 'center',
         marginTop: 7,
         fontSize: 13,
     },
     title: {
         fontFamily: 'Poppins_600SemiBold',
-        color: '#1C260D',
+        color: '#8F3326',
         marginTop: 12,
         fontSize: 27,
         marginLeft: 20,

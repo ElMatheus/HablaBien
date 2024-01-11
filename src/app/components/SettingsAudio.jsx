@@ -63,9 +63,9 @@ const SettingsAudio = ({setConfiguration, setSpeed, speed}) => {
                             step={0.1}
                             value={speed}
                             onValueChange={setSpeed}
-                            minimumTrackTintColor="#77A632"
-                            maximumTrackTintColor="#77A632"
-                            thumbTintColor="#A7F272"
+                            minimumTrackTintColor="#E8C2B7"
+                            maximumTrackTintColor="#E8C2B7"
+                            thumbTintColor="#9F6057"
                         />
                     </View>
 
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontFamily: "Poppins_700Bold",
-        color: '#1C260D',
+        color: '#8F3326',
         fontSize: 23,
         marginLeft: 6
     },
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
     },
     titleSpeed : {
         fontFamily: "Poppins_500Medium",
-        color: '#1C260D',
+        color: '#8F3326',
         fontSize: 15,
     }
 

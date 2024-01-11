@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { View, StyleSheet, Text, Animated } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useFonts, Poppins_400Regular } from '@expo-google-fonts/poppins';
 
 const RepeatVoice = () => {
@@ -34,7 +34,7 @@ const RepeatVoice = () => {
       <View style={styles.container}>
         <View style={styles.icon}>
           <Animated.View style={{ transform: [{ scale: scaleValue }] }}>
-            <Icon style={styles.iconMic} name="keyboard-voice" size={56} color="#1C260D" />
+            <Icon style={styles.iconMic} name="account-voice" size={56} color="#1C260D" />
           </Animated.View>
           <Text style={styles.txtRepeat}>Repetir</Text>
         </View>
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   icon: {
-    backgroundColor: '#A7F272',
+    backgroundColor: '#E8C2B7',
     padding: 8,
     borderRadius: 50,
     gap: 5,
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   txtRepeat: {
     fontFamily: 'Poppins_400Regular',
     fontSize: 15,
-    color: '#1C260D',
+    color: '#8F3326',
   },
 });
 
