@@ -35,7 +35,7 @@ import {
 const ListenAndRepeat = () => {
     const [start, setStart] = useState(false);
     const [unseenObjects, setUnseenObjects] = useState([...allObjects]);
-    const [numberPage, setNumberPage] = useState(Math.floor(Math.random() * unseenObjects.length));
+    const [numberPage, setNumberPage] = useState(1);
     const [configuration, setConfiguration] = useState(false);
     const [speedVoice, setSpeedVoice] = useState(1.0);
     const [showRepeat, setShowRepeat] = useState(false);
@@ -44,12 +44,11 @@ const ListenAndRepeat = () => {
     const duration = (text.split('').length / wordsPerSecond);
 
     const nextPage = () => {
-        unseenObjects.splice(numberPage, 1);
-        setUnseenObjects([...unseenObjects]);
-        if (unseenObjects.length === 0) {
-            setUnseenObjects([...allObjects]);
-        }
-        setNumberPage(Math.floor(Math.random() * unseenObjects.length));
+        numberPage < unseenObjects.length - 1 ? setNumberPage(numberPage + 1) : setNumberPage(0);
+    }
+
+    const previousPage = () => {
+        numberPage > 0 ? setNumberPage(numberPage - 1) : setNumberPage(unseenObjects.length - 1);
     }
 
     const handleSpeek = () => {
@@ -60,10 +59,6 @@ const ListenAndRepeat = () => {
             onDone: () => setShowRepeat(true)
         });
     }
-
-    useEffect(() => {
-        setNumberPage(Math.floor(Math.random() * unseenObjects.length));
-    }, [unseenObjects]);
 
     useEffect(() => {
         if (showRepeat) {
@@ -110,14 +105,18 @@ const ListenAndRepeat = () => {
                     <Text style={styles.title}>{unseenObjects[numberPage]?.name}</Text>
                 </View>
                 <View style={styles.icons}>
-                    <TouchableOpacity onPress={() => setConfiguration(true)} style={styles.iconAudio}>
-                        <Icon name="setting" size={45} color="#9F6057" />
+                    
+                    <TouchableOpacity onPress={previousPage} style={styles.iconAudio}>
+                        <IconE name="level-up" size={45} color="#9F6057" />
                     </TouchableOpacity>
                     <TouchableOpacity onPress={handleSpeek} style={styles.iconAudio}>
                         <IconE name="controller-play" size={45} color="#9F6057" />
                     </TouchableOpacity>
                     <TouchableOpacity onPress={nextPage} style={styles.iconAudio}>
                         <IconE name="level-down" size={45} color="#9F6057" />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => setConfiguration(true)} style={styles.iconAudio}>
+                        <Icon name="setting" size={45} color="#9F6057" />
                     </TouchableOpacity>
                 </View>
             </View>
