@@ -52,7 +52,7 @@ const Home = () => {
     return <AppLoading />;
   } else {
     return (
-      <ImageBackground source={require("../../assets/images/WhatsApp.jpeg")} style={styles.containerHome}>
+      <ImageBackground source={require("../../assets/images/backgroundHome.jpeg")} style={styles.containerHome}>
         <Header func={start} setFunc={setStart} classSelection={null} />
         <View style={styles.containerBtn}>
           <LinearGradient
