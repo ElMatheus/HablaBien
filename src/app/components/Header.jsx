@@ -1,7 +1,8 @@
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, Animated } from "react-native";
 import { BlurView } from "expo-blur";
 import Icon from 'react-native-vector-icons/Entypo';
 import { Link } from "expo-router";
+import { useState, useEffect } from "react";
 import {
     useFonts,
     Poppins_100Thin,
@@ -45,26 +46,50 @@ const Header = ({ func, setFunc, classSelection }) => {
         Poppins_900Black,
         Poppins_900Black_Italic,
     });
-        return (
-            func == false ? (
-                classSelection == null ? (
-                    <BlurView intensity={40} tint="dark" >
-                        <View style={styles.header}>
-                            <Text style={styles.titleHeader}>HablaBien</Text>
-                            <Icon onPress={() => setFunc(!func)} size={18} color="#fff" name="chevron-thin-up" style={{ transform: [{ rotate: '180deg' }] }} />
-                        </View>
-                    </BlurView >
-                ) : (
-                    <BlurView style={styles.blur2} intensity={40} tint="dark" >
-                        <View style={styles.header}>
-                            <Text style={styles.titleHeader}>HablaBien</Text>
-                            <Icon onPress={() => setFunc(!func)} size={18} color="#fff" name="chevron-thin-up" style={{ transform: [{ rotate: '180deg' }] }} />
-                        </View>
-                    </BlurView >
-                )
 
+    const [animatedHeight, setAnimatedHeight] = useState(new Animated.Value(50));
+
+    useEffect(() => {
+        animatedHeight.stopAnimation(); // Stop the previous animation
+        if (func == true) {
+            Animated.timing(animatedHeight, {
+                toValue: 660,
+                duration: 800,
+                useNativeDriver: false
+            }).start();
+        } else {
+            Animated.timing(animatedHeight, {
+                toValue: 50,
+                duration: 530,
+                useNativeDriver: false
+            }).start();
+        }
+    }, [func]);
+    return (
+        func == false ? (
+            classSelection == null ? (
+                <BlurView intensity={40} tint="dark" >
+                    <Animated.View style={{ height: animatedHeight }}>
+                        <View style={styles.header}>
+                            <Text style={styles.titleHeader}>HablaBien</Text>
+                            <Icon onPress={() => setFunc(!func)} size={18} color="#fff" name="chevron-thin-up" style={{ transform: [{ rotate: '180deg' }] }} />
+                        </View>
+                    </Animated.View>
+                </BlurView >
             ) : (
-                <BlurView style={styles.blur} intensity={40} tint="dark" >
+                <BlurView style={styles.blur2} intensity={40} tint="dark" >
+                    <Animated.View style={{ height: animatedHeight }}>
+                        <View style={styles.header}>
+                            <Text style={styles.titleHeader}>HablaBien</Text>
+                            <Icon onPress={() => setFunc(!func)} size={18} color="#fff" name="chevron-thin-up" style={{ transform: [{ rotate: '180deg' }] }} />
+                        </View>
+                    </Animated.View>
+                </BlurView >
+            )
+
+        ) : (
+            <Animated.View style={[styles.blur, { height: animatedHeight }]}>
+                <BlurView intensity={40} tint="dark" >
                     <View style={styles.headerSelection}>
                         <Text style={styles.titleHeader}>HablaBien</Text>
                         <Icon onPress={() => setFunc(!func)} size={18} color="#fff" name="chevron-thin-up" />
@@ -75,10 +100,11 @@ const Header = ({ func, setFunc, classSelection }) => {
                         </View>
                     </View>
                 </BlurView >
+            </Animated.View>
 
-            )
         )
-    }
+    )
+}
 const styles = StyleSheet.create({
     containerHeader: {
         flex: 1,
@@ -106,7 +132,6 @@ const styles = StyleSheet.create({
     },
     blur: {
         width: "100%",
-        height: "100%",
         position: 'absolute',
         flex: 1,
         flexDirection: 'column',
