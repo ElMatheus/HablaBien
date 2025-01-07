@@ -1,50 +1,37 @@
-# Welcome to your Expo app 👋
+# HablaBien - Estimulando seu Espanhol com Exercícios de Fonoaudiologia
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+![Exemplo de Uso](./assets/images/captura1.png)
 
-## Get started
+# Visão Geral
 
-1. Install dependencies
+Este é um aplicativo de estimulação do espanhol, com o foco em estimular seu espanhol por meio de exercícios, criada com base em conceitos fonoaudiológicos para aprimorar sua comunicação e sua pronúncia com exercícios eficazes e práticos.
 
-   ```bash
-   npm install
-   ```
+## Como Funciona
 
-2. Start the app
+O aplicativo consiste em aprimorar a sua expressão e compreensão do espanhol de maneira inovadora, por meio de exercícios orais focados em alcançar uma pronúncia clara e precisa. Projetado para atender todos os publicos, **HablaBien** tem um design atraente para as crianças e ao mesmo tempo moderna. Além de ser uma escolha ideal para profissionais de saúde que desejem praticidade ao interagir com seus clientes.
 
-   ```bash
-    npx expo start
-   ```
+### 🙇 Escucha Y Repite
 
-In the output, you'll find options to open the app in a
+Escucha y repite é um exercício que irá aprimorar suas habilidades em espanhol. Neste exercício, você consegue escutar um áudio em espanhol e, em seguida, repeti-lo para aprimorar sua pronúncia. A interface deste exercício permite que você avance para o próximo áudio ou retroceda, proporcionando flexibilidade ao seu ritmo de aprendizado.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+![Exemplo de Uso do Escucha y Repite](./assets/captura2.png)
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+Destacamos a funcionalidade de ajuste da velocidade do áudio, permitindo que você configure conforme sua preferência. Essa opção visa otimizar a compreensão auditiva, adaptando-se ao seu nível de proficiência. Experimente o **Escucha y Repite** para uma prática auditiva dinâmica e personalizada no caminho para a fluência em espanhol.
 
-## Get a fresh project
+![Exemplo do ajuste de velocidade](./assets/captura3.png)
 
-When you're ready, run:
+#### Detalhes Técnicos
 
-```bash
-npm run reset-project
-```
+- **Geração de palavras em espanhol:**  
+  A aplicação utiliza a API open-source [Random Words API](https://github.com/mcnaveen/Random-Words-API) para gerar palavras aleatórias em espanhol.
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+- **Geração de imagens:**  
+  As imagens exibidas no aplicativo são obtidas através da plataforma [Pexels](https://www.pexels.com), que oferece imagens de alta qualidade e livres de direitos autorais.
 
-## Learn more
+### 💻 Mais exercícios estão a caminho!
 
-To learn more about developing your project with Expo, look at the following resources:
+## Contribuições
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+Este projeto é de código aberto vizando o aprendizado e as contribuições são bem-vindas. Se você encontrar problemas ou tiver ideias para melhorias, sinta-se à vontade para criar problemas (issues) ou enviar pull requests no repositório do projeto.
 
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Agradecemos por escolher o HablaBien. Esperamos que este aplicativo proporcione uma experiência de aprendizado valiosa e gratificante para aprimorar suas habilidades em espanhol. ¡Para hablar bien, ven a HablaBien! 🌟
