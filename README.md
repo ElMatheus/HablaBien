@@ -14,11 +14,11 @@ O aplicativo consiste em aprimorar a sua expressão e compreensão do espanhol d
 
 Escucha y repite é um exercício que irá aprimorar suas habilidades em espanhol. Neste exercício, você consegue escutar um áudio em espanhol e, em seguida, repeti-lo para aprimorar sua pronúncia. A interface deste exercício permite que você avance para o próximo áudio ou retroceda, proporcionando flexibilidade ao seu ritmo de aprendizado.
 
-![Exemplo de Uso do Escucha y Repite](./assets/captura2.png)
+![Exemplo de Uso do Escucha y Repite](./assets/images/captura2.png)
 
 Destacamos a funcionalidade de ajuste da velocidade do áudio, permitindo que você configure conforme sua preferência. Essa opção visa otimizar a compreensão auditiva, adaptando-se ao seu nível de proficiência. Experimente o **Escucha y Repite** para uma prática auditiva dinâmica e personalizada no caminho para a fluência em espanhol.
 
-![Exemplo do ajuste de velocidade](./assets/captura3.png)
+![Exemplo do ajuste de velocidade](./assets/images/captura3.png)
 
 #### Detalhes Técnicos
 
