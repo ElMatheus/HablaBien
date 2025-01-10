@@ -14,7 +14,7 @@ export default function ListenAndRepeat() {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [history, setHistory] = useState<{ srcImage: string; photographer: string; word: string }[]>([]);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const key = "6vzxEQM76ToClQfz2INAfSSoNZjKxpdw5ZUEhnbaM4HfoSPw4LGRef5O";
+  const key = process.env.PEXELS_API_KEY;
   const [audioSpeed, setAudioSpeed] = useState<number>(1);
   const [settingsVisible, setSettingsVisible] = useState<boolean>(false);
   const [audioDuration, setAudioDuration] = useState<boolean>(false);
@@ -52,7 +52,7 @@ export default function ListenAndRepeat() {
     try {
       const response = await axios.get("https://api.pexels.com/v1/search", {
         params: { query: wordParams },
-        headers: { Authorization: key },
+        headers: { Authorization: process.env.PEXELS_API_KEY },
       });
       return {
         srcImage: response.data.photos[0]?.src.original,
