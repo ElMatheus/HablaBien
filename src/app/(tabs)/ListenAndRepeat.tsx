@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Text, View, TouchableOpacity, Image } from "react-native";
+import { Text, View, TouchableOpacity, Image, Pressable } from "react-native";
 import { useEffect, useState } from "react";
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -10,6 +10,8 @@ import SettingsAudio from "@/src/components/SettingsAudio";
 import RepeatVoice from "@/src/components/RepeatVoice";
 import { useRouter } from 'expo-router';
 import Constants from "expo-constants";
+
+import Animated, { useSharedValue, useAnimatedStyle, withSpring } from 'react-native-reanimated';
 
 export default function ListenAndRepeat() {
   const router = useRouter();
@@ -22,6 +24,63 @@ export default function ListenAndRepeat() {
   const [audioDuration, setAudioDuration] = useState<boolean>(false);
   const [showRepeat, setShowRepeat] = useState<boolean>(false);
   const statusBarHeight = Constants.statusBarHeight;
+  const scalePlay = useSharedValue(1);
+  const rotationNext = useSharedValue(0);
+  const scaleNext = useSharedValue(1);
+  const rotationBack = useSharedValue(0);
+  const scaleBack = useSharedValue(1);
+
+  const animatedStylePlay = useAnimatedStyle(() => {
+    return {
+      transform: [{ scale: scalePlay.value }],
+    };
+  });
+
+  const animatedStyleNext = useAnimatedStyle(() => {
+    return {
+      transform: [
+        { rotate: `${rotationNext.value}deg` },
+        { scale: scaleNext.value }
+      ],
+    };
+  });
+
+  const animatedStyleBack = useAnimatedStyle(() => {
+    return {
+      transform: [
+        { rotate: `${rotationBack.value}deg` },
+        { scale: scaleBack.value }
+      ],
+    };
+  });
+
+  const handlePlayPressIn = () => {
+    scalePlay.value = withSpring(0.8);
+  };
+
+  const handlePlayPressOut = () => {
+    scalePlay.value = withSpring(1);
+  };
+
+  const handleNextPressIn = () => {
+    rotationNext.value = withSpring(15);
+    scaleNext.value = withSpring(0.8);
+  };
+
+  const handleNextPressOut = () => {
+    rotationNext.value = withSpring(0);
+    scaleNext.value = withSpring(1);
+  };
+
+  const handleBackPressIn = () => {
+    rotationBack.value = withSpring(-15);
+    scaleBack.value = withSpring(0.8);
+  };
+
+  const handleBackPressOut = () => {
+    rotationBack.value = withSpring(0);
+    scaleBack.value = withSpring(1);
+  };
 
   useEffect(() => {
     const generateInitialObject = async () => {
@@ -170,35 +229,66 @@ export default function ListenAndRepeat() {
                 </View>
               </View>
               <View className="flex-row justify-center items-center p-5">
-                <TouchableOpacity onPress={handleBack} style={{ marginRight: -10, zIndex: 1 }}>
-                  <AntDesign className="p-3 bg-custom-primary rounded-full" name="back" size={32} color="#FCFAF7" />
-                </TouchableOpacity>
+                <Animated.View style={[{ marginRight: -10, zIndex: 1 }, animatedStyleBack]}>
+                  <Pressable
+                    onPressIn={handleBackPressIn}
+                    onPressOut={handleBackPressOut}
+                    onPress={handleBack}
+                  >
+                    <AntDesign
+                      className="p-3 bg-custom-primary rounded-full"
+                      name="back"
+                      size={32}
+                      color="#FCFAF7"
+                    />
+                  </Pressable>
+                </Animated.View>
                 {
                   audioDuration ? (
-                    <TouchableOpacity style={{ zIndex: 2 }} onPress={handleStop}>
-                      <Entypo className="p-5 bg-custom-primary rounded-full" style={{ elevation: 4 }} name="controller-stop" size={32} color="#FCFAF7" />
-                    </TouchableOpacity>
+                    <Pressable style={{ zIndex: 2, elevation: 4 }}
+                      onPress={handleStop}
+                      onPressIn={handlePlayPressIn}
+                      onPressOut={handlePlayPressOut}
+                    >
+                      <Animated.View style={[animatedStylePlay, { elevation: 4 }]}>
+                        <Entypo className="p-5 bg-custom-primary rounded-full" style={{ elevation: 2 }} name="controller-stop" size={32} color="#FCFAF7" />
+                      </Animated.View>
+                    </Pressable>
                   ) : (
-                    <TouchableOpacity style={{ zIndex: 2 }} onPress={() => handlePlay(history[currentIndex].word)}>
-                      <Entypo className="p-5 bg-custom-primary rounded-full" style={{ elevation: 4 }} name="controller-play" size={32} color="#FCFAF7" />
-                    </TouchableOpacity>
+                    <Pressable style={{ zIndex: 2, elevation: 4 }}
+                      onPress={() => handlePlay(history[currentIndex].word)}
+                      onPressIn={handlePlayPressIn}
+                      onPressOut={handlePlayPressOut}
+                    >
+                      <Animated.View style={[animatedStylePlay, { elevation: 4 }]}>
+                        <Entypo className="p-5 bg-custom-primary rounded-full" style={{ elevation: 2 }} name="controller-play" size={32} color="#FCFAF7" />
+                      </Animated.View>
+                    </Pressable>
+
                   )
                 }
-                <TouchableOpacity onPress={handleNext} style={{ marginLeft: -10, zIndex: 1 }}>
-                  <AntDesign
-                    className="p-3 bg-custom-primary rounded-full"
-                    name="back"
-                    size={32}
-                    color="#FCFAF7"
-                    style={{ transform: [{ scaleX: -1 }] }}
-                  />
-                </TouchableOpacity>
+
+                <Animated.View style={[{ marginLeft: -10, zIndex: 1 }, animatedStyleNext]}>
+                  <Pressable
+                    onPressIn={handleNextPressIn}
+                    onPressOut={handleNextPressOut}
+                    onPress={handleNext}
+                  >
+                    <AntDesign
+                      className="p-3 bg-custom-primary rounded-full"
+                      name="back"
+                      size={32}
+                      color="#FCFAF7"
+                      style={{ transform: [{ scaleX: -1 }] }}
+                    />
+                  </Pressable>
+                </Animated.View>
               </View>
             </View>
 
           </View>
         )
       }
-    </View>
+    </View >
   );
 }
