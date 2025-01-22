@@ -8,7 +8,7 @@ module.exports = {
       'poppinsL': ["Poppins_300Light", 'sans-serif'],
       'poppinsB': ["Poppins_700Bold", 'sans-serif'],
       'poppinsM': ["Poppins_500Medium", 'sans-serif'],
-      'poppinsR': ["Poppins_500Regular", 'sans-serif'],
+      'poppinsR': ["Poppins_400Regular", 'sans-serif'],
       'poppinsSB': ["Poppins_600SemiBold", 'sans-serif'],
     },
     lineHeight: {

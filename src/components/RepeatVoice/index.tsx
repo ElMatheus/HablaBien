@@ -1,21 +1,24 @@
-import { View, Text, Animated } from 'react-native';
+import { View, Text, Animated, Easing } from 'react-native';
 import { useEffect, useRef } from 'react';
-import { MaterialIcons } from '@expo/vector-icons';
+import BackgroundRadialGradient from '@/assets/images/backgroundRadialGradient';
+import ContainerMic from '@/assets/images/containerMic';
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 
 const RepeatVoice = () => {
-
-  const scaleValue = useRef(new Animated.Value(0)).current;
+  const scaleValue = useRef(new Animated.Value(1)).current;
 
   const startPulse = () => {
     Animated.sequence([
       Animated.timing(scaleValue, {
-        toValue: 1,
-        duration: 1000, // aumenta a duração para tornar a animação mais lenta
+        toValue: 1.2,
+        duration: 1000,
+        easing: Easing.inOut(Easing.ease),
         useNativeDriver: true,
       }),
       Animated.timing(scaleValue, {
-        toValue: 0.8, // altera o valor mínimo de escala para que o ícone não diminua muito
-        duration: 1000, // aumenta a duração para tornar a animação mais lenta
+        toValue: 1,
+        duration: 1000,
+        easing: Easing.inOut(Easing.ease),
         useNativeDriver: true,
       }),
     ]).start(() => startPulse());
@@ -26,17 +29,39 @@ const RepeatVoice = () => {
   }, []);
 
   return (
-    <View className='absolute inset-0 bg-black/50 justify-center z-40'>
-      <View className='items-center'>
-        <View className='bg-custoom-salmon pt-2 pb-6 px-3 rounded-full gap-5 items-center'>
-          <Animated.View style={{ transform: [{ scale: scaleValue }] }}>
-            <MaterialIcons className='p-5 rounded-full bg-white' name="record-voice-over" size={68} color="#1C260D" />
-          </Animated.View>
-          <Text className='font-poppinsM text-2xl text-custom-brown'>Repita!</Text>
+    <View className="absolute inset-0">
+      {/* Fundo com gradiente radial */}
+      <View className="absolute inset-0 z-10">
+        <BackgroundRadialGradient />
+      </View>
+
+      {/* Conteúdo centralizado */}
+      <View className="absolute inset-0 z-50 flex items-center justify-end p-5 gap-8">
+        <Animated.View style={{ transform: [{ scale: scaleValue }] }}>
+          <View className="relative">
+            {/* SVG Circle */}
+            <ContainerMic />
+            {/* Ícone centralizado */}
+            <MaterialIcons
+              name="record-voice-over"
+              size={48}
+              color="white"
+              style={{
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: [{ translateX: -24 }, { translateY: -24 }],
+              }}
+            />
+          </View>
+        </Animated.View>
+        {/* Texto abaixo */}
+        <View className="bg-custom-black rounded-[2.5rem] py-4 px-10 mt-4">
+          <Text className="font-poppinsR text-lg color-custom-white">Repita...</Text>
         </View>
       </View>
     </View>
   );
 };
 
-export default RepeatVoice
+export default RepeatVoice;
