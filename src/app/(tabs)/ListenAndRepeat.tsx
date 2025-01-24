@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Text, View, TouchableOpacity, Image, Pressable } from "react-native";
+import { Text, View, TouchableOpacity, Image, Pressable, useWindowDimensions } from "react-native";
 import { useEffect, useState } from "react";
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -10,10 +10,12 @@ import SettingsAudio from "@/src/components/SettingsAudio";
 import RepeatVoice from "@/src/components/RepeatVoice";
 import { useRouter } from 'expo-router';
 import Constants from "expo-constants";
+import ContentLoader, { Circle, Rect } from 'react-content-loader/native';
 
 import Animated, { useSharedValue, useAnimatedStyle, withSpring } from 'react-native-reanimated';
 
 export default function ListenAndRepeat() {
+  const { width, height } = useWindowDimensions();
   const router = useRouter();
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [history, setHistory] = useState<{ srcImage: string; photographer: string; word: string }[]>([]);
@@ -29,6 +31,7 @@ export default function ListenAndRepeat() {
   const scaleNext = useSharedValue(1);
   const rotationBack = useSharedValue(0);
   const scaleBack = useSharedValue(1);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const animatedStylePlay = useAnimatedStyle(() => {
     return {
@@ -151,11 +154,15 @@ export default function ListenAndRepeat() {
 
   const generateObject = async () => {
     try {
+      setLoading(true);
       const { word, definition } = await generateWord();
       const { srcImage, photographer } = await generateImage(definition);
       return { word, srcImage, photographer };
     } catch (error) {
       console.error(error);
+    }
+    finally {
+      setLoading(false);
     }
   };
 
@@ -197,21 +204,31 @@ export default function ListenAndRepeat() {
       {settingsVisible && <SettingsAudio speed={audioSpeed} setSpeed={setAudioSpeed} close={() => setSettingsVisible(false)} />}
       {errorMessage && <PopUp message={errorMessage} setModalVisible={() => setErrorMessage(null)} />}
       {showRepeat && <RepeatVoice />}
-      {
-        history.length === 0 ? (
-          <View className="w-full h-full flex items-center justify-center bg-custom-gray">
-            <Text className="text-4xl color-custom-brown font-poppinsSB">Carregando...</Text>
-          </View>
-        ) : (
-          <View className="w-full h-full">
-            <View style={{ marginTop: statusBarHeight }} className="flex-row justify-between items-center p-2">
-              <TouchableOpacity onPress={() => router.back()}>
-                <MaterialCommunityIcons className="p-4 border rounded-full" name="arrow-left" size={27} color="#0E0D26" />
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => setSettingsVisible(true)}>
-                <AntDesign className="p-5 bg-custom-black rounded-full" name="setting" size={25} color="#FCFAF7" />
-              </TouchableOpacity>
-            </View>
+
+      <View className="w-full h-full">
+        <View style={{ marginTop: statusBarHeight }} className="flex-row justify-between items-center p-2">
+          <TouchableOpacity onPress={() => router.back()}>
+            <MaterialCommunityIcons className="p-4 border rounded-full" name="arrow-left" size={27} color="#0E0D26" />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => setSettingsVisible(true)}>
+            <AntDesign className="p-5 bg-custom-black rounded-full" name="setting" size={25} color="#FCFAF7" />
+          </TouchableOpacity>
+        </View>
+        {
+          history.length === 0 || loading == true ? (
+            <ContentLoader
+              viewBox={`0 0 ${width} ${height}`}
+              backgroundColor="#EDEFF3"
+              foregroundColor="#F9F7F9"
+            >
+              <Rect x="2" y="2" rx="45" ry="45" width={"97%"} height={431} />
+              <Rect x="50" y="437" rx="0" ry="0" width={"74%"} height={20} />
+              <Rect x="50" y="563" rx="0" ry="0" width={120} height={45} />
+              <Circle cx="157" cy="735" r="25" />
+              <Circle cx="207" cy="735" r="30" />
+              <Circle cx="257" cy="735" r="25" />
+            </ContentLoader>
+          ) : (
             <View className="flex-1 justify-between">
               <View className="px-1.5 py-5">
                 <Image
@@ -221,6 +238,7 @@ export default function ListenAndRepeat() {
                 />
                 <Text className="font-poppinsL text-xl text-center" style={{ color: "rgba(14, 13, 38, 0.6)" }}>Imagem de {history[currentIndex].photographer} no Pexelss</Text>
               </View>
+
               <View className="p-10">
                 <View className="border-l-2 border-custom-primary py-2 px-3 text-4xl">
                   <Text className="font-poppinsL text-4xl">
@@ -285,10 +303,9 @@ export default function ListenAndRepeat() {
                 </Animated.View>
               </View>
             </View>
-
-          </View>
-        )
-      }
+          )
+        }
+      </View>
     </View >
   );
 }
