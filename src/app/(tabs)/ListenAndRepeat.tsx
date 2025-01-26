@@ -201,7 +201,7 @@ export default function ListenAndRepeat() {
 
   return (
     <View>
-      {settingsVisible && <SettingsAudio speed={audioSpeed} setSpeed={setAudioSpeed} visible={settingsVisible} />}
+      {settingsVisible && <SettingsAudio speed={audioSpeed} setSpeed={setAudioSpeed} visible={settingsVisible} close={() => setSettingsVisible(false)} />}
       {errorMessage && <PopUp message={errorMessage} setModalVisible={() => setErrorMessage(null)} />}
       {showRepeat && <RepeatVoice />}
 
