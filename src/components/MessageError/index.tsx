@@ -1,18 +1,23 @@
-import { View, Text, Modal, TouchableOpacity } from 'react-native'
+import { View, Text, Modal, TouchableOpacity } from 'react-native';
+import AntDesign from '@expo/vector-icons/AntDesign';
 
 const PopUp = ({ message, setModalVisible }: { message: string, setModalVisible: () => void }) => {
   return (
     <Modal
       transparent={true}
-      animationType="slide"
+      animationType="fade"
       visible={!!message}
       onRequestClose={setModalVisible}
     >
-      <View className="flex-1 justify-center items-center">
-        <View className="bg-white p-8 rounded-xl shadow-2xl w-11/12 max-w-md">
-          <Text className="text-custom-brown text-xl font-poppinsM mb-4">{message}</Text>
-          <TouchableOpacity className="bg-custom-brown py-3 px-6 rounded-full" onPress={setModalVisible}>
-            <Text className="text-white text-center text-lg font-poppinsM">OK</Text>
+      <View style={{ backgroundColor: "rgba(14, 13, 38, 0.9)" }} className="flex-1 justify-center items-center ">
+        <View className='bg-custom-white px-10 py-5 m-10 rounded-3xl items-center flex-col gap-4 '>
+          <AntDesign className='bg-custom-black p-4 rounded-full' name="warning" size={24} color="#FCFAF7" />
+          <View className='flex-col items-center gap-2'>
+            <Text className='font-poppinsB text-2xl'>Ocorreu um erro!</Text>
+            <Text className='font-poppinsM text-lg text-center'>{message}</Text>
+          </View>
+          <TouchableOpacity className='bg-custom-primary py-2 px-3 rounded-full' onPress={setModalVisible}>
+            <Text className='font-poppinsM text-lg color-custom-white'>Atualizar</Text>
           </TouchableOpacity>
         </View>
       </View>
