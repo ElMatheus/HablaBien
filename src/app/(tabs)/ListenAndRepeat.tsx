@@ -174,6 +174,7 @@ export default function ListenAndRepeat() {
       if (newObject) {
         setHistory((prevHistory) => [...prevHistory, newObject]);
         setCurrentIndex((prevIndex) => prevIndex + 1);
+        handleNextPressOut();
       }
     }
   };
