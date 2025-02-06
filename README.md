@@ -1,6 +1,6 @@
 # HablaBien - Estimulando seu Espanhol com Exercícios de Fonoaudiologia
 
-<img src="./assets/images/captura1.png" alt="Exemplo de Uso" width="400"/>
+<img src="./assets/images/demonstration-home.png" alt="Exemplo de Uso" width="200"/>
 
 # Visão Geral
 
@@ -14,11 +14,13 @@ O aplicativo consiste em aprimorar a sua expressão e compreensão do espanhol d
 
 Escucha y repite é um exercício que irá aprimorar suas habilidades em espanhol. Neste exercício, você consegue escutar um áudio em espanhol e, em seguida, repeti-lo para aprimorar sua pronúncia. A interface deste exercício permite que você avance para o próximo áudio ou retroceda, proporcionando flexibilidade ao seu ritmo de aprendizado.
 
-<img src="./assets/images/captura2.png" alt="Exemplo de Uso do Escucha y Repite" width="400"/>
+<img src="./assets/images/demonstration-objectpronunciation.png" alt="Exemplo de Uso do Escucha y Repite" width="200"/>
+
+<img src="./assets/images/demonstration-repeatvoice.png" alt="Exemplo de Uso do Escucha y Repite" width="200"/>
 
 Destacamos a funcionalidade de ajuste da velocidade do áudio, permitindo que você configure conforme sua preferência. Essa opção visa otimizar a compreensão auditiva, adaptando-se ao seu nível de proficiência. Experimente o **Escucha y Repite** para uma prática auditiva dinâmica e personalizada no caminho para a fluência em espanhol.
 
-<img src="./assets/images/captura3.png" alt="Exemplo do ajuste de velocidade" width="400"/>
+<img src="./assets/images/demonstration-settings.png" alt="Exemplo do ajuste de velocidade" width="200"/>
 
 #### Detalhes Técnicos
 
